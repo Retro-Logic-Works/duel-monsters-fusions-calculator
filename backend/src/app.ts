@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import monsterRouter from "./routes/monsterRoute";
 import fusionRecipeRouter from "./routes/fusionRecipeRoute";
+import cardDropRouter from "./routes/cardDropRoute";
 import { apiKeyAuth } from "./middleware/apiKeyAuth";
 import { rateLimiter } from "./middleware/rateLimiter";
 
@@ -36,3 +37,4 @@ app.get("/", (_req, res) => {
 
 app.use("/monsters", monsterRouter);
 app.use("/fusions", fusionRecipeRouter);
+app.use("/card-drops", cardDropRouter);
