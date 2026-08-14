@@ -1,4 +1,5 @@
 import './LootPage.css'
+import { useState } from "react";
 import { useCardDrops } from "../../hooks/useCardDrops";
 import type { DuelistCardInfoDTO } from "../../models/card-drops-dto";
 
@@ -62,6 +63,7 @@ function getBonusRows(duelist: DuelistCardInfoDTO): BonusRow[] {
 
 export default function LootPage() {
     const { duelists, loading, error } = useCardDrops();
+    const [expandedDuelist, setExpandedDuelist] = useState<string | null>(null);
 
     return (
         <div className="loot-page" data-testid="loot-page">
@@ -79,70 +81,86 @@ export default function LootPage() {
                     {duelists.map((duelist) => {
                         const dropRows = getDropRows(duelist);
                         const bonusRows = getBonusRows(duelist);
+                        const isExpanded = expandedDuelist === duelist.name;
 
                         return (
                             <section key={duelist.name} className="duelist-section">
-                                <h2 className="duelist-name">{duelist.name}</h2>
-                                <div className="loot-table-group">
-                                    <div className="loot-table-wrapper">
-                                        <div className="loot-table-heading">Drop Table</div>
-                                        {dropRows.length === 0 ? (
-                                            <p className="loot-table-empty">No drops.</p>
-                                        ) : (
-                                            <table className="loot-table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>Card</th>
-                                                        <th>ATK</th>
-                                                        <th>DEF</th>
-                                                        <th>Chance</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {dropRows.map((row, i) => (
-                                                        <tr key={`${row.cardName}-${i}`}>
-                                                            <td>{row.cardNumber ?? "?"}</td>
-                                                            <td>{row.cardName}</td>
-                                                            <td>{row.attackPoints ?? "-"}</td>
-                                                            <td>{row.defensePoints ?? "-"}</td>
-                                                            <td>{row.dropChance}%</td>
+                                <h2 className="duelist-heading">
+                                    <button
+                                        type="button"
+                                        className="duelist-header"
+                                        aria-expanded={isExpanded}
+                                        onClick={() => setExpandedDuelist(isExpanded ? null : duelist.name)}
+                                    >
+                                        <span className="duelist-name">{duelist.name}</span>
+                                        <span className="duelist-summary">
+                                            {dropRows.length} drop{dropRows.length === 1 ? "" : "s"} · {bonusRows.length} bonus{bonusRows.length === 1 ? "" : "es"}
+                                        </span>
+                                        <span className="duelist-expand-icon">{isExpanded ? "▼" : "▶"}</span>
+                                    </button>
+                                </h2>
+                                {isExpanded && (
+                                    <div className="loot-table-group">
+                                        <div className="loot-table-wrapper">
+                                            <div className="loot-table-heading">Drop Table</div>
+                                            {dropRows.length === 0 ? (
+                                                <p className="loot-table-empty">No drops.</p>
+                                            ) : (
+                                                <table className="loot-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Card</th>
+                                                            <th>ATK</th>
+                                                            <th>DEF</th>
+                                                            <th>Chance</th>
                                                         </tr>
-                                                    ))}
-                                                </tbody>
-                                            </table>
-                                        )}
-                                    </div>
-                                    <div className="loot-table-wrapper">
-                                        <div className="loot-table-heading">Victory Bonus Table</div>
-                                        {bonusRows.length === 0 ? (
-                                            <p className="loot-table-empty">No victory bonuses.</p>
-                                        ) : (
-                                            <table className="loot-table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>Card</th>
-                                                        <th>ATK</th>
-                                                        <th>DEF</th>
-                                                        <th>Wins</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {bonusRows.map((row, i) => (
-                                                        <tr key={`${row.cardName}-${i}`}>
-                                                            <td>{row.cardNumber ?? "?"}</td>
-                                                            <td>{row.cardName}</td>
-                                                            <td>{row.attackPoints ?? "-"}</td>
-                                                            <td>{row.defensePoints ?? "-"}</td>
-                                                            <td>{row.winsRequired}</td>
+                                                    </thead>
+                                                    <tbody>
+                                                        {dropRows.map((row, i) => (
+                                                            <tr key={`${row.cardName}-${i}`}>
+                                                                <td>{row.cardNumber ?? "?"}</td>
+                                                                <td>{row.cardName}</td>
+                                                                <td>{row.attackPoints ?? "-"}</td>
+                                                                <td>{row.defensePoints ?? "-"}</td>
+                                                                <td>{row.dropChance}%</td>
+                                                            </tr>
+                                                        ))}
+                                                    </tbody>
+                                                </table>
+                                            )}
+                                        </div>
+                                        <div className="loot-table-wrapper">
+                                            <div className="loot-table-heading">Victory Bonus Table</div>
+                                            {bonusRows.length === 0 ? (
+                                                <p className="loot-table-empty">No victory bonuses.</p>
+                                            ) : (
+                                                <table className="loot-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Card</th>
+                                                            <th>ATK</th>
+                                                            <th>DEF</th>
+                                                            <th>Wins</th>
                                                         </tr>
-                                                    ))}
-                                                </tbody>
-                                            </table>
-                                        )}
+                                                    </thead>
+                                                    <tbody>
+                                                        {bonusRows.map((row, i) => (
+                                                            <tr key={`${row.cardName}-${i}`}>
+                                                                <td>{row.cardNumber ?? "?"}</td>
+                                                                <td>{row.cardName}</td>
+                                                                <td>{row.attackPoints ?? "-"}</td>
+                                                                <td>{row.defensePoints ?? "-"}</td>
+                                                                <td>{row.winsRequired}</td>
+                                                            </tr>
+                                                        ))}
+                                                    </tbody>
+                                                </table>
+                                            )}
+                                        </div>
                                     </div>
-                                </div>
+                                )}
                             </section>
                         );
                     })}

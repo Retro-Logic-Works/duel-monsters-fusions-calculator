@@ -12,7 +12,6 @@
 }
 
 .duelist-section {
-  padding: 16px 0;
   border-bottom: 1px solid var(--border);
 }
 
@@ -20,9 +19,49 @@
   border-bottom: none;
 }
 
-.duelist-name {
+.duelist-heading {
+  margin: 0;
+}
+
+.duelist-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 4px;
+  background: none;
+  border: none;
+  font: inherit;
+  color: var(--text-h);
+  cursor: pointer;
   text-align: left;
-  margin: 0 0 12px;
+}
+
+.duelist-header:hover {
+  color: var(--accent);
+}
+
+.duelist-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.duelist-summary {
+  flex: 1;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--text);
+}
+
+.duelist-expand-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background-color: var(--accent-bg);
+  color: var(--accent);
+  font-size: 0.75rem;
 }
 
 .loot-table-group {
@@ -30,6 +69,7 @@
   align-items: flex-start;
   gap: 24px;
   flex-wrap: wrap;
+  padding: 0 4px 16px;
 }
 
 .loot-table-wrapper {
@@ -85,6 +125,16 @@
 @media (max-width: 640px) {
   .loot-page {
     padding: 0 16px;
+  }
+
+  .duelist-header {
+    flex-wrap: wrap;
+    row-gap: 4px;
+  }
+
+  .duelist-summary {
+    flex-basis: 100%;
+    order: 3;
   }
 
   .loot-table-group {
