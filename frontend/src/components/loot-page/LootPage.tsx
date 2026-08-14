@@ -68,7 +68,7 @@ export default function LootPage() {
     return (
         <div className="loot-page" data-testid="loot-page">
             <div className="loot-hero">
-                <h1 className="loot-title">Loot Table</h1>
+                <h1 className="loot-title">Duel Monsters 1 Loot Table</h1>
             </div>
             {loading ? (
                 <p>Loading...</p>
