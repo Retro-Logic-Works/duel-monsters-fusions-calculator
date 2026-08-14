@@ -3,14 +3,19 @@ import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 import App from '../App';
 
-// Mock the hook so tests don't make real API calls
+// Mock the hooks so tests don't make real API calls
 vi.mock('../hooks/useFusionSearch', () => ({
     useFusionSearch: vi.fn(),
 }));
+vi.mock('../hooks/useCardDrops', () => ({
+    useCardDrops: vi.fn(),
+}));
 
 import { useFusionSearch } from '../hooks/useFusionSearch';
+import { useCardDrops } from '../hooks/useCardDrops';
 
 const mockUseFusionSearch = vi.mocked(useFusionSearch);
+const mockUseCardDrops = vi.mocked(useCardDrops);
 
 async function openNavMenu() {
     const trigger = screen.getByText('Duel Monsters 1');
@@ -21,6 +26,7 @@ async function openNavMenu() {
 describe('App routing', () => {
     beforeEach(() => {
         mockUseFusionSearch.mockReturnValue({ results: [], loading: false });
+        mockUseCardDrops.mockReturnValue({ duelists: [], loading: false, error: false });
         window.history.pushState({}, '', '/');
     });
 
