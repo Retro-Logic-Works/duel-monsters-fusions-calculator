@@ -2,3 +2,103 @@
   box-sizing: border-box;
   width: 100%;
 }
+
+.loot-hero {
+  padding: 8px 16px 0;
+}
+
+.duelist-list {
+  padding: 0 16px 16px;
+}
+
+.duelist-section {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.duelist-section:last-child {
+  border-bottom: none;
+}
+
+.duelist-name {
+  text-align: left;
+  margin: 0 0 12px;
+}
+
+.loot-table-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.loot-table-wrapper {
+  flex: 1;
+  min-width: 280px;
+}
+
+.loot-table-heading {
+  font-weight: 700;
+  color: var(--text-h);
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.loot-table-empty {
+  text-align: left;
+  font-style: italic;
+}
+
+.loot-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.loot-table thead {
+  background-color: var(--code-bg);
+  color: var(--text-h);
+}
+
+.loot-table th {
+  padding: 8px 12px;
+  text-align: left;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.loot-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  color: var(--text);
+}
+
+.loot-table tbody tr:hover {
+  background-color: var(--accent-bg);
+}
+
+.loot-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+@media (max-width: 640px) {
+  .loot-page {
+    padding: 0 16px;
+  }
+
+  .loot-table-group {
+    flex-wrap: nowrap;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .loot-table {
+    font-size: 0.8rem;
+  }
+
+  .loot-table th,
+  .loot-table td {
+    padding: 6px 8px;
+  }
+}
