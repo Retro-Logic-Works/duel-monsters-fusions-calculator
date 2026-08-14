@@ -5,29 +5,10 @@ import { useFusionSearch } from "../../hooks/useFusionSearch";
 export default function SearchPage() {
     const [query, setQuery] = useState("");
     const [expandedRow, setExpandedRow] = useState<number | null>(null);
-    const [menuOpen, setMenuOpen] = useState(false);
     const { results, loading } = useFusionSearch(query);
 
     return (
         <div className="search-page">
-            <header className="app-header">
-                <div
-                    className="nav-dropdown"
-                    onMouseEnter={() => setMenuOpen(true)}
-                    onMouseLeave={() => setMenuOpen(false)}
-                >
-                    <span className="nav-dropdown-trigger">
-                        Duel Monsters 1
-                        <span className="nav-dropdown-caret">{menuOpen ? "▲" : "▼"}</span>
-                    </span>
-                    {menuOpen && (
-                        <div className="nav-dropdown-menu">
-                            <div className="nav-dropdown-item">Fusion Calculator</div>
-                            <div className="nav-dropdown-item">Loot Table</div>
-                        </div>
-                    )}
-                </div>
-            </header>
             <div className="search-hero">
                 <h1 className="search-title">Fusion Calculator</h1>
                 <input
