@@ -1,0 +1,154 @@
+.loot-page {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.loot-hero {
+  padding: 8px 16px 0;
+}
+
+.duelist-list {
+  padding: 0 16px 16px;
+}
+
+.duelist-section {
+  border-bottom: 1px solid var(--border);
+}
+
+.duelist-section:last-child {
+  border-bottom: none;
+}
+
+.duelist-heading {
+  margin: 0;
+}
+
+.duelist-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 4px;
+  background: none;
+  border: none;
+  font: inherit;
+  color: var(--text-h);
+  cursor: pointer;
+  text-align: left;
+}
+
+.duelist-header:hover {
+  color: var(--accent);
+}
+
+.duelist-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.duelist-summary {
+  flex: 1;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--text);
+}
+
+.duelist-expand-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background-color: var(--accent-bg);
+  color: var(--accent);
+  font-size: 0.75rem;
+}
+
+.loot-table-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 0 4px 16px;
+}
+
+.loot-table-wrapper {
+  flex: 1;
+  min-width: 280px;
+}
+
+.loot-table-heading {
+  font-weight: 700;
+  color: var(--text-h);
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.loot-table-empty {
+  text-align: left;
+  font-style: italic;
+}
+
+.loot-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.loot-table thead {
+  background-color: var(--code-bg);
+  color: var(--text-h);
+}
+
+.loot-table th {
+  padding: 8px 12px;
+  text-align: left;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.loot-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  color: var(--text);
+}
+
+.loot-table tbody tr:hover {
+  background-color: var(--accent-bg);
+}
+
+.loot-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+@media (max-width: 640px) {
+  .loot-page {
+    padding: 0 16px;
+  }
+
+  .duelist-header {
+    flex-wrap: wrap;
+    row-gap: 4px;
+  }
+
+  .duelist-summary {
+    flex-basis: 100%;
+    order: 3;
+  }
+
+  .loot-table-group {
+    flex-wrap: nowrap;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .loot-table {
+    font-size: 0.8rem;
+  }
+
+  .loot-table th,
+  .loot-table td {
+    padding: 6px 8px;
+  }
+}
