@@ -85,7 +85,7 @@ The main goal is to answer questions like:
     ```
     `VITE_API_KEY` should match the backend's `API_KEY` so the app's requests bypass rate limiting.
 
-    **Note:** Vite inlines `VITE_`-prefixed variables into the built JS bundle, so this key ships to every browser that loads the app — anyone can read it from the Network tab or the bundle source. It's not a security boundary; it just keeps the app's own traffic from tripping a rate limit meant for anonymous/bot traffic, and does not stop someone who deliberately extracts the key from bypassing the limit too.
+    **Note:** Vite inlines `VITE_`-prefixed variables into the built JS bundle, so this key ships to every browser that loads the app; anyone can read it from the Network tab or the bundle source. It's not a security boundary; it just keeps the app's own traffic from tripping a rate limit meant for anonymous/bot traffic, and does not stop someone who deliberately extracts the key from bypassing the limit too.
 
 3. Start the dev server:
     ```
@@ -119,10 +119,9 @@ npm test
 
 ## Planned Features
 - Search by resulting fusion monster
-- Filter by monster type
-- Filter by attack/defense range
+- View loot tables for each duelist in Duel Monsters 1
 - Add autocomplete for monster names
-- Add support for multiple Game Boy Duel Monsters games
+- Add support for Duel Monsters 2
 
 ## Special Thanks
 Special thank you to Spriters Resource user [Phongpon](https://www.spriters-resource.com/profile/phongpon/) for uploading sprite sheets for Duel Monsters on Game Boy. 
